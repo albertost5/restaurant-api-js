@@ -1,0 +1,76 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Margherita Pizza",
+        "price": 12,
+        "category": 1
+      },
+      {
+        "id": 2,
+        "name": "Veggie Pizza",
+        "price": 14,
+        "category": 1
+      },
+      {
+        "id": 3,
+        "name": "BBQ Chicken Pizza",
+        "price": 16,
+        "category": 1
+      },
+      {
+        "id": 4,
+        "name": "Buffalo Pizza",
+        "price": 16,
+        "category": 1
+      },
+      {
+        "id": 5,
+        "name": "Water",
+        "price": 3,
+        "category": 2
+      },
+      {
+        "id": 6,
+        "name": "Beer",
+        "price": 4,
+        "category": 2
+      },
+      {
+        "id": 7,
+        "name": "Red Wine",
+        "price": 5,
+        "category": 2
+      },
+      {
+        "id": 8,
+        "name": "White Wine",
+        "price": 5,
+        "category": 2
+      },
+      {
+        "id": 9,
+        "name": "Tequila",
+        "price": 6,
+        "category": 2
+      },
+      {
+        "id": 10,
+        "name": "Chocolate Ice Cream",
+        "price": 5,
+        "category": 3
+      },
+      {
+        "id": 11,
+        "name": "Coulant",
+        "price": 6,
+        "category": 3
+      },
+      {
+        "id": 12,
+        "name": "Ristretto",
+        "price": 2,
+        "category": 3
+      }
+    ]
+  }

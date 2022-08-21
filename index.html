@@ -14,9 +14,58 @@
         <h1 class="text-center text-white fs-3">Restaurant JS</h1>
     </header>
 
+    <div class="d-flex mt-4 justify-content-center">
+        <button data-bs-toggle="modal" data-bs-target="#clientForm" type="button" class="btn btn-success">New
+            Client</button>
+    </div>
+
+
+    <main id="orders" class="container bg-light mt-5 p-4 d-none">
+        <h2 class="text-center my-4">Orders</h2>
+
+        <div class="content"></div>
+    </main>
+
+
+    <section id="resume" class="resume bg-light container mt-5 p-4 d-none">
+        <h2 class="text-center my-4">Resume</h2>
+
+        <div class="content row">
+            <p class="text-center">Add elements to the new order:</p>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="clientForm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Restaurant App</h2>
+                    <button type=" button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Table</label>
+                            <input id="table" type="number" class="form-control" min="1" max="8">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Hour</label>
+                            <input id="time" type="time" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="save-client" type="button" class="btn btn-primary">Save Client</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js" type="module"></script>
 </body>
 
 </html>

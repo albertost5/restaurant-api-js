@@ -3,5 +3,5 @@ export const btnSaveClient = document.querySelector('#save-client'),
              timeImput = document.querySelector('#time'),
              modalBody = document.querySelector('.modal-body'),
              clientModal = document.querySelector('#clientForm'),
-             ordersMain = document.querySelector('#orders'),
+             productsMain = document.querySelector('#products'),
              resumeSection = document.querySelector('#resume');

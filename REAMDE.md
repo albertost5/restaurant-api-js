@@ -9,7 +9,7 @@ Project to simulate orders in a restaurant, consuming an API to get the products
 
 1. Validate form, hide modal and display a message if it's not completed.
 
-2. Show Orders and Resume with all the products.
+2. Show hidden sections with the products data from the API.
 
 3. 
 

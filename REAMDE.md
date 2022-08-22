@@ -16,5 +16,5 @@ Project to simulate orders in a restaurant, consuming an API to get the products
 
 4. Add delete option for each product.
 
-5. 
+5. Add tips section
 

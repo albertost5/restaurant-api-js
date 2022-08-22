@@ -138,7 +138,7 @@ function updateQuantity( productObj ) {
 function showResume() {
     
     const resumeDiv = document.createElement('div');
-    resumeDiv.classList.add('col-md-6', 'py-5', 'px-3', 'shadow');
+    resumeDiv.classList.add('col-md-6', 'py-5', 'px-3', 'shadow', 'card');
 
     const tablep = document.createElement('p');
     tablep.textContent = `Table: ${client.table}`;
@@ -155,9 +155,9 @@ function showResume() {
     const orderUl = document.createElement('ul');
     orderUl.classList.add('list-group');
 
+    resumeDiv.appendChild(title);
     resumeDiv.appendChild(tablep);
     resumeDiv.appendChild(timep);
-    resumeDiv.appendChild(title);
 
     client.order.forEach( product => {
         const productLi = document.createElement('li');
@@ -181,12 +181,13 @@ function showResume() {
         orderUl.appendChild(productLi);
     });
 
+    
     resumeDiv.appendChild(orderUl);
-
+    
     UI.resumeContent.textContent = '';
     UI.resumeContent.appendChild(resumeDiv);
 
-    
+    showTipsSection();
 }
 
 function deleteItem( productId, htmlElement ) {
@@ -198,8 +199,62 @@ function deleteItem( productId, htmlElement ) {
 
     // Update the resume section if there are not products to show
     if( client.order.length === 0 ) {
-        UI.resumeContent.innerHTML = '<p class="text-center">Add elements to the new order:</p>'
+        UI.resumeContent.innerHTML = '<p class="text-center">Add elements to the new order:</p>';
     }
+}
+
+function showTipsSection() {
+
+    const tipsDiv = document.createElement('div');
+    tipsDiv.classList.add('col-md-6','tips');
+
+    const title = document.createElement('h3');
+    title.classList.add('my-4');
+    title.textContent = 'Tips';
+    
+    const tipsOptionsDiv = document.createElement('div');
+    tipsOptionsDiv.classList.add('card', 'py-5', 'px-3', 'shadow');
+
+    tipsOptionsDiv.appendChild(title);
+    tipsDiv.appendChild(tipsOptionsDiv);
+
+    // Radio button
+    const radio10Div = document.createElement('div');
+    radio10Div.classList.add('form-check');
+    
+    const radio10 = document.createElement('input');
+    radio10.type = 'radio';
+    radio10.name = 'tips';
+    radio10.value = '10';
+    radio10.classList.add('form-check-input');
+    
+    const radio10Label = document.createElement('label');
+    radio10Label.classList.add('form-check-label');
+    radio10Label.textContent = '10 %'
+    
+    radio10Div.appendChild(radio10);
+    radio10Div.appendChild(radio10Label);
+
+    const radio15Div = document.createElement('div');
+    radio15Div.classList.add('form-check');
+    
+    const radio15 = document.createElement('input');
+    radio15.type = 'radio';
+    radio15.name = 'tips';
+    radio15.value = '15';
+    radio15.classList.add('form-check-input');
+    
+    const radio15Label = document.createElement('label');
+    radio15Label.classList.add('form-check-label');
+    radio15Label.textContent = '15 %'
+    
+    radio15Div.appendChild(radio15);
+    radio15Div.appendChild(radio15Label);
+    
+    tipsOptionsDiv.appendChild(radio10Div);
+    tipsOptionsDiv.appendChild(radio15Div);
+
+    UI.resumeContent.appendChild(tipsDiv);
 }
 
 export {

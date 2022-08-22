@@ -227,6 +227,9 @@ function showTipsSection() {
     radio10.name = 'tips';
     radio10.value = '10';
     radio10.classList.add('form-check-input');
+    radio10.onclick = (e) => {
+        getTotal(e);
+    };
     
     const radio10Label = document.createElement('label');
     radio10Label.classList.add('form-check-label');
@@ -243,6 +246,9 @@ function showTipsSection() {
     radio15.name = 'tips';
     radio15.value = '15';
     radio15.classList.add('form-check-input');
+    radio15.onclick = (e) => {
+        getTotal(e);
+    };
     
     const radio15Label = document.createElement('label');
     radio15Label.classList.add('form-check-label');
@@ -255,6 +261,45 @@ function showTipsSection() {
     tipsOptionsDiv.appendChild(radio15Div);
 
     UI.resumeContent.appendChild(tipsDiv);
+}
+
+function getTotal(e) {
+    let subtotal = 0;
+    let total = 0;
+
+    const tip = Number(e.target.value);
+
+    client.order.forEach( p => {
+        subtotal += p.price * p.quantity;
+    });
+
+    total = subtotal + (subtotal * tip / 100);
+
+    showTotalPrice(subtotal, total, tip);
+}
+
+function showTotalPrice( subtotal, totalPrice, tipApplied ) {
+    let totalDiv;
+    const tipsDiv = document.querySelector('.tips');
+    
+    if( ! document.querySelector('.total') ) {
+        totalDiv = document.createElement('div');
+        totalDiv.classList.add('card', 'shadow', 'total');
+    } else {
+        totalDiv = document.querySelector('.total');
+        clearTotalElement();
+    }
+    
+    totalDiv.innerHTML = `
+        <p class="text-center fw-bold">Subtotal: <span class="fw-light">${subtotal} €</span></p>
+        <p class="text-center fw-bold">Total: <span class="fw-light">${totalPrice} €</span></p>
+    `;
+
+    tipsDiv.appendChild(totalDiv);
+}
+
+function clearTotalElement() {
+    document.querySelector('.total').textContent = '';
 }
 
 export {

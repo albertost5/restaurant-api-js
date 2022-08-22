@@ -3,7 +3,8 @@ Project to simulate orders in a restaurant, consuming an API to get the products
 
 ## Installation 🔧
 
-- Install json server in order to be able to create the API: `npm i json-server`. Visit: `https://www.npmjs.com/package/json-server`
+- Install json server in order to be able to create the API: `npm i json-server` and start the JSON server: `json-server -p {PORT} --watch dbFileName.json`. 
+  Visit: `https://www.npmjs.com/package/json-server`
 
 ## Features
 
@@ -11,9 +12,9 @@ Project to simulate orders in a restaurant, consuming an API to get the products
 
 2. Show hidden sections with the products data from the API.
 
-3. 
+3. Add inputs for each product and update the quantity through an event.
 
-4. 
+4. Add delete option for each product.
 
 5. 
 

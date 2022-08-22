@@ -74,6 +74,7 @@ function showProducts( productsArr ) {
     const contentDiv = document.querySelector('#products .content');
 
     productsArr.forEach( product => {
+        
         const rowDiv = document.createElement('div');
         rowDiv.classList.add('row', 'py-3', 'border-top', 'justify-content');
 
@@ -96,10 +97,19 @@ function showProducts( productsArr ) {
         quantityInput.value = 0;
         quantityInput.classList.add('form-control');
 
+        
         const quantityDiv = document.createElement('div');
         quantityDiv.classList.add('col-md-2');
         quantityDiv.appendChild(quantityInput);
+        
+        // Event to get the quantity of the product
+        quantityDiv.onchange = function() {
+            const quantity = Number(quantityInput.value);
+            updateQuantity({...product, quantity});
 
+            showResume();
+        };
+        
         rowDiv.appendChild(nameDiv);
         rowDiv.appendChild(priceDiv);
         rowDiv.appendChild(categoryDiv);
@@ -107,6 +117,89 @@ function showProducts( productsArr ) {
 
         contentDiv.appendChild(rowDiv);
     });
+}
+
+function updateQuantity( productObj ) {
+
+    if( productObj.quantity > 0 ) {
+        // Add new product or update quantity
+        if( client.order.some(product => product.id === productObj.id) ) {
+            const index = client.order.findIndex( product => product.id == productObj.id);
+            client.order[index] = productObj;
+        } else {
+            client.order.push( productObj );
+        };
+    } else {
+        // Delete order
+        client.order = client.order.filter( product => product.id !== productObj.id);
+    }
+}
+
+function showResume() {
+    
+    const resumeDiv = document.createElement('div');
+    resumeDiv.classList.add('col-md-6', 'py-5', 'px-3', 'shadow');
+
+    const tablep = document.createElement('p');
+    tablep.textContent = `Table: ${client.table}`;
+    tablep.classList.add('fw-bold');
+
+    const timep = document.createElement('p');
+    timep.textContent = `Hour: ${client.hour}`;
+    timep.classList.add('fw-bold');
+
+    const title = document.createElement('h1');
+    title.textContent = 'Orders';
+    title.classList.add('my-4');
+
+    const orderUl = document.createElement('ul');
+    orderUl.classList.add('list-group');
+
+    resumeDiv.appendChild(tablep);
+    resumeDiv.appendChild(timep);
+    resumeDiv.appendChild(title);
+
+    client.order.forEach( product => {
+        const productLi = document.createElement('li');
+        productLi.classList.add('list-group-item');
+        productLi.innerHTML = `
+            <h4 classs="text-center my-4">${product.name}</h4>
+            <p class="fw-bold">Quantity: <span class="fw-light">${product.quantity}</span></p>
+            <p class="fw-bold">Price: <span class="fw-light">${product.price} €</span></p>
+            <p class="fw-bold">Subtotal: <span class="fw-light">${product.quantity * product.price} €</span></p>
+        `;
+
+        const btnDelete = document.createElement('btn');
+        btnDelete.textContent = 'Detele';
+        btnDelete.classList.add('btn', 'btn-danger');
+        btnDelete.onclick = () => {
+            deleteItem(product.id, productLi);
+        }
+
+        productLi.appendChild(btnDelete);
+
+        orderUl.appendChild(productLi);
+    });
+
+    resumeDiv.appendChild(orderUl);
+
+    UI.resumeContent.textContent = '';
+    UI.resumeContent.appendChild(resumeDiv);
+
+    
+}
+
+function deleteItem( productId, htmlElement ) {
+    // Update order array, delete html element and update quantity
+    client.order = client.order.filter( product => product.id !== productId );
+    htmlElement.remove();
+    const input = document.getElementById(`${productId}`);
+    input.value = 0;
+
+    // Update the resume section if there are not products to show
+    if( client.order.length === 0 ) {
+        UI.resumeContent.innerHTML = '<p class="text-center">Add elements to the new order:</p>'
+    }
 }
 
 export {
